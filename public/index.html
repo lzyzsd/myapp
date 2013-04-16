@@ -101,11 +101,8 @@
 
   <!-- Once the page is loaded, initalize the plug-in. -->
   <script type="text/javascript">
-    $('#tiles').imagesLoaded(new function() {
-      // This filter is later used as the selector for which grid items to show.
-      var filter = '';
-      var handler;
-
+    // $('#tiles').imagesLoaded(new function() {
+    // });
       // Prepare layout options.
       var options = {
         autoResize: true, // This will auto-update the layout when the browser window is resized.
@@ -113,6 +110,9 @@
         offset: 2, // Optional, the distance between grid items
         itemWidth: 210 // Optional, the width of a grid item
       };
+
+      var filter = '';
+      var handler;
 
       // This function filters the grid when a change is made.
       var refresh = function() {
@@ -132,7 +132,7 @@
       /**
        * This function checks all filter options to see which ones are active.
        * If they have changed, it also calls a refresh (see above).
-       */
+       **/
       var updateFilters = function() {
         var oldFilter = filter;
         filter = '';
@@ -170,13 +170,30 @@
         item.toggleClass('active');
         updateFilters();
       }
+    
+    $('#tiles').imagesLoaded(function() {
+      // Get a reference to your grid items.
+      var handler = $('#tiles li');
+      
+      // Call the layout function.
+      handler.wookmark(options);
+      
+      // Capture clicks on grid items.
+      // handler.click(function(){
+      //   // Randomize the height of the clicked item.
+      //   var newHeight = $('img', this).height() + Math.round(Math.random()*300+30);
+      //   $(this).css('height', newHeight+'px');
+        
+      //   // Update the layout.
+      //   handler.wookmark();
+      // });
 
-      // Capture filter click events.
-      $('#filters li').click(onClickFilter);
-
-      // Do initial update (shows all items).
-      updateFilters();
+      $(function() {
+        // Capture filter click events.
+        $('#filters li').click(onClickFilter);
+      });
     });
+
   </script>
 
 </body>
