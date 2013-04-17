@@ -18,7 +18,15 @@
 
   <!-- Styling for your grid blocks -->
   <link rel="stylesheet" href="stylesheets/style.css">
-
+  <!--Start of Zopim Live Chat Script-->
+  <script type="text/javascript">
+    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+    $.src='//cdn.zopim.com/?19tNx5JReqckiwOTEfzCmQJLis7XLwc4';z.t=+new Date;$.
+    type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+  </script>
+<!--End of Zopim Live Chat Script-->
 </head>
 
 <body>
@@ -101,8 +109,6 @@
 
   <!-- Once the page is loaded, initalize the plug-in. -->
   <script type="text/javascript">
-    // $('#tiles').imagesLoaded(new function() {
-    // });
       // Prepare layout options.
       var options = {
         autoResize: true, // This will auto-update the layout when the browser window is resized.
@@ -112,7 +118,7 @@
       };
 
       var filter = '';
-      var handler;
+      var handler = null;
 
       // This function filters the grid when a change is made.
       var refresh = function() {
@@ -170,6 +176,44 @@
         item.toggleClass('active');
         updateFilters();
       }
+
+      /**
+     * When scrolled all the way to the bottom, add more tiles.
+     */
+    function onScroll(event) {
+      // Check if we're within 100 pixels of the bottom edge of the broser window.
+      var winHeight = window.innerHeight ? window.innerHeight : $(window).height(); // iphone fix
+      var closeToBottom = ($(window).scrollTop() + winHeight > $(document).height() - 100);
+      if(closeToBottom) {
+        var request = $.ajax(
+          {
+            dataType: 'json',
+            url: 'products'
+          });
+        request.done(function(data) {
+          var html = '';
+          for(var i in data) {
+            var imageUrl = data[i];
+            // var ele = '<li><p>26</p></li>';
+            // elements += ele[0];
+            html += '<li>';
+
+            html += '<img src="' + imageUrl + '" width="200" height="297">';
+
+            html += '<p>26</p>';
+            html += '</li>';
+            // $('#tiles').append(ele);
+          }
+          console.log(html);
+          // $('#tiles').append(html);
+          // Create a new layout handler.
+          $('#tiles').imagesLoaded(function() {
+            handler = $('#tiles li');
+            handler.wookmark(options);
+          });
+        });
+      }
+    };
     
     $('#tiles').imagesLoaded(function() {
       // Get a reference to your grid items.
@@ -191,6 +235,8 @@
       $(function() {
         // Capture filter click events.
         $('#filters li').click(onClickFilter);
+        // Capture scroll event.
+        $(document).bind('scroll', onScroll);
       });
     });
 
