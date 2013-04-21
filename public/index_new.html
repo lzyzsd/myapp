@@ -1,0 +1,229 @@
+
+<!doctype html>
+<html lang="zh-TW">
+	<head>
+		<meta charset="utf-8" />
+		<title>jQuery Masonry Demo</title>
+		<!--[if IE]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+		<script src="javascripts/jquery-1.9.1.min.js"></script>
+		<script src="javascripts/jquery.masonry.min.js"></script>
+
+		<style>
+		.item {
+			width: 200px;
+			margin: 9px;
+			padding:10px;
+			float: left;
+			display:block;
+			-webkit-box-shadow:0 1px 3px rgba(34, 25, 25, 0.4);
+				 -moz-box-shadow:0 1px 3px rgba(34, 25, 25, 0.4);
+			    -ms-box-shadow:0 1px 3px rgba(34, 25, 25, 0.4);
+			     -o-box-shadow:0 1px 3px rgba(34, 25, 25, 0.4);
+			        box-shadow:0 1px 3px rgba(34, 25, 25, 0.4);
+			-webkit-border-radius:5px;
+				 -moz-border-radius:5px;
+			    -ms-border-radius:5px;
+			     -o-border-radius:5px;
+			        border-radius:5px;
+		}
+
+		.item:hover{
+			-webkit-box-shadow:0 1px 15px rgba(34, 25, 25, 0.4);
+				 -moz-box-shadow:0 1px 15px rgba(34, 25, 25, 0.4);
+			    -ms-box-shadow:0 1px 15px rgba(34, 25, 25, 0.4);
+			     -o-box-shadow:0 1px 15px rgba(34, 25, 25, 0.4);
+			        box-shadow:0 1px 15px rgba(34, 25, 25, 0.4);			
+		}
+		
+		.item img{
+			width: 200px;
+			height:auto;
+		}
+		
+		#info{
+			width:50%;
+			margin:0 auto;
+			text-align:center;
+			font-family:"微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", Helvetica, Arial, FreeSans, sans-serif;
+			font-size:18px;
+			line-height:1.7em;
+		}
+		
+		
+		/**** Transitions ****/
+
+		.masonry,
+		.masonry .masonry-brick {
+			-webkit-transition-duration: 0.6s;
+				 -moz-transition-duration: 0.6s;
+					 -o-transition-duration: 0.6s;
+							transition-duration: 0.6s;
+		}
+
+		.masonry {
+			-webkit-transition-property: height, width;
+				 -moz-transition-property: height, width;
+					 -o-transition-property: height, width;
+							transition-property: height, width;
+		}
+
+		.masonry .masonry-brick {
+			-webkit-transition-property: left, right, top;
+				 -moz-transition-property: left, right, top;
+					 -o-transition-property: left, right, top;
+							transition-property: left, right, top;
+		}
+		</style>
+		<script type="text/javascript">
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-12680210-4']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+	</head>
+	<body>
+		<div id="info">Masonry 效果DEMO，請試著改變視窗大小看看效果。</div>
+		<div id="container">
+			<!-- <div class="box"><img src="images/image_1.jpg"/>79冰淇淋<br/>以華麗的皇家風格，彰現冰淇淋與配料的豪華組合。主色系採深咖啡色，讓人聯想到甜美的巧克力滋味。</div>
+			<div class="box"><img src="images/image_8.jpg"/>劇照師聯盟<br/>主印象為膠捲底片，搭配黑色調，帶出寧靜、發人悠情的氛圍，有種瞬間的靜止之美。</div>
+			<div class="box"><img src="images/image_9.jpg"/>野村建設<br/>略帶紋路的背景，與古字體的搭配，如石頭般堅硬寧靜卻不失典雅。</div>
+			<div class="box"><img src="images/image_5.jpg"/>派約里亞聯盟<br/>以各種可愛的小圖，組合成無厘頭的大圖。天馬行空的感覺充滿了童趣。</div>
+			<div class="box"><img src="images/image_3.jpg"/>派約里亞聯盟<br/>用真人照片配合童話背景營造溫馨的氣氛，粉筆線條的點綴多了一些可愛。</div>
+			<div class="box"><img src="images/image_2.jpg"/>祐呈生命禮儀<br/>用花卉表達對逝去生命的追思與莊重，淺咖啡的背景喻生命回歸塵土的寧靜。</div>
+			<div class="box"><img src="images/image_6.jpg"/>環球教育中心<br/>方塊狀的版面切割呈現專業的感覺，力求資訊清晰易尋。</div>
+			<div class="box"><img src="images/image_9.jpg"/>堃信國際實業<br/>利用陰影和堆疊效果增加立體感，在平凡添加一些變化。</div>
+			<div class="box"><img src="images/image_1.jpg"/>八閩旅行社<br/>使用大量的藍色和白色，以及雲朵元素，強調海和天的感覺，令人遙想美麗的離島風光。</div>
+			<div class="box"><img src="images/image_1.jpg"/>牛旺牛肉火鍋<br/>不規則的元素排列讓版面看起來靈活，主視窗利用實體照片製造視覺印象，強調食物的美味。</div>
+			<div class="box"><img src="images/image_1.jpg"/>奇士派<br/>以白色為基底，象徵起士蛋糕潔白美麗的形象。大量使用實物照片做為元素點綴，增加畫面的豐富度。</div>
+			<div class="box"><img src="images/image_1.jpg"/>T-House<br/>精減元素，讓畫面簡單化，有效呈現出茶的純璞與自然。大幅的茶園照片，不只吸晴更能彰顯主題。</div>
+			<div class="box"><img src="images/image_1.jpg"/>松川有限公司<br/>主色調採綠色及白色，與大自然相輝映。使用大量綠色植物做為背景元素，更彰顯園藝氣息。</div>
+			<div class="box"><img src="images/image_1.jpg"/>合光機電<br/>精鍊工整的設計，強調公司機械領域上的專業形象。重點放在機器的資訊呈現，力求整齊清晰。</div>
+			<div class="box"><img src="images/image_1.jpg"/>弘陽建築團隊<br/>使用矮版設計，呈現質感。背景採暗色系，讓實景照片更加顯眼。</div>
+			<div class="box"><img src="images/image_2.jpg"/>瀚光隆企業<br/>跳脫一般對衣服配件廠的刻板印象，採取活潑繽紛的設計，帶給人耳目一新的感覺。</div>
+			<div class="box"><img src="images/image_1.jpg"/>甲品香食品<br/>以褐色底和毛筆筆畫來映襯美食，搭配古詩體的文案，讓網站飄出中式古典的香氣。</div>
+			<div class="box"><img src="images/image_3.jpg"/>甲品香食品<br/>利用邊際的陰影和花紋做出層次感，像一幅縱向拉開的卷軸，呈現中國風格。</div>
+			<div class="box"><img src="images/image_1.jpg"/>Joomla無障礙<br/>全站符合無障礙網站A+標準，擁有導盲磚、標示點等設計，便利於身障人士使用。</div>
+			<div class="box"><img src="images/image_4.jpg"/>高屹工業<br/>採取與公司名片風格一致的設計，以白色為底，橫空畫過的藍色弧線令人留下深刻印象。</div>
+			<div class="box"><img src="images/image_1.jpg"/>高屹工業電子書<br/>以FLASH技術模擬書本翻頁效果，具有放大、縮小等功能，方便閱讀。</div>
+			<div class="box"><img src="images/image_5.jpg"/>立學職訓<br/>以教學大樓照片元素點明網站主旨，搭配簡單的色塊，讓焦點集中在資訊上。</div>
+			<div class="box"><img src="images/image_1.jpg"/>音樂人<br/>將網站想像成樂器的組合，瀏覽時彷彿可以聽到音樂的演奏聲。黑色基底，就如同開演前的靜謐一樣。</div>
+			<div class="box"><img src="images/image_6.jpg"/>Naturally Plus<br/>金色華麗的綴飾，令人想像生命的活潑與美好。喜悅的心情，自然對商品產生好感。</div>
+			<div class="box"><img src="images/image_7.jpg"/>端中體育<br/>大幅縱覽體育場的圖片，讓人不自覺的聯想到觀看體育轉播的情景，自然帶出體育用品的主題。</div>
+			<div class="box"><img src="images/image_1.jpg"/>喜悅溫泉會館<br/>沙灘、藍天、陽光，外帶椰子樹和躺椅，一進入網站就自然沉醉在渡假的美好時光中。</div>
+			<div class="box"><img src="images/image_1.jpg"/>SevenDays<br/>極簡主義的風格，帶出商品的質感。另外，具體購物車及各式賣場折扣，是個豐富的購物網站。</div>
+			<div class="box"><img src="images/image_1.jpg"/>上恆眼鏡<br/>如同眼鏡喜歡在小地方多些裝飾以彰顯獨特性一樣，在畫面的邊角多些點綴，反而顯的特別。</div>
+			<div class="box"><img src="images/image_1.jpg"/>豐富的配色，彰顯出歡樂的旅遊氣氛。首頁的時鐘，可以提醒優惠的剩餘時間。	</div>
+			<div class="box"><img src="images/image_1.jpg"/>林義傑<br/>用超過一半版面的大幅人物形象圖，直接點明主題。色塊及文字採用黑色，讓焦點更加集中。</div>
+			<div class="box"><img src="images/image_1.jpg"/>臺灣區珠寶公會<br/>用豐富的花紋和陰影效果，來呈現珠寶的華麗高貴。高雅，而不落俗套。</div>
+			<div class="box"><img src="images/image_1.jpg"/>皇池溫泉御膳館<br/>採用日系建築的元素，搭配一點水墨風格的感覺，不僅與溫泉會館相呼應，更讓人悠然神往。</div>
+			<div class="box"><img src="images/image_1.jpg"/>RiceCastle<br/>像是從森林的縫隙中窺見整個大自然，柳暗花明的感覺，更顯現大自然吸引人之處。</div>
+			<div class="box"><img src="images/image_1.jpg"/>RiceCastle<br/>褐色視覺與橫幅的穀物照片，直接說明了網站主題。層疊式的手法讓網站更有層次感。</div>
+			<div class="box"><img src="images/image_1.jpg"/>南臺灣國際精品<br/>乾淨、簡潔，畫面中沒有多餘的元素，強烈的白色印象突顯了鑽石的質感與尊貴。</div>
+			<div class="box"><img src="images/image_1.jpg"/>南臺灣國際精品<br/>幾乎純黑的畫面印象，只有中央透出一點光芒，像是從鑽石裡露出無可掩蓋的輝耀。</div>
+			<div class="box"><img src="images/image_1.jpg"/>LanHai<br/>細草輕擺、綠葉微顫，充滿綠意、微風、飛翔的感覺，從網頁中透出自然的美好。</div>
+			<div class="box"><img src="images/image_1.jpg"/>旭宸設計<br/>在灰色牆面底，用不規則區塊堆疊出版面。不整齊，卻不會有凌亂的感覺，反而具備設計的層次感。</div> -->
+                                       
+		</div>   
+		<div id="loader">
+        	<div id="loaderCircle"></div>
+      	</div>
+		<footer>
+			<a href="http://www.google.com" alt="網頁設計" title="網頁設計">Google</a>
+		</footer>
+		<script>
+			var isLoading = false;
+			/**
+			 * When scrolled all the way to the bottom, add more tiles.
+			 */
+			function onScroll(event) {
+			  // Only check when we're not still waiting for data.
+				if(!isLoading) {
+					// Check if we're within 100 pixels of the bottom edge of the broser window.
+					var closeToBottom = ($(window).scrollTop() + $(window).height() > $(document).height() - 100);
+					if(closeToBottom) {
+						loadData();
+					}
+				}
+			};
+
+			/**
+			* Loads data from the API.
+			*/
+			function loadData() {
+				isLoading = true;
+				$('#loaderCircle').show();
+
+				$.ajax({
+					url: '/products',
+					dataType: 'json',
+					// data: {page: page}, // Page parameter to make sure we load new data
+					success: onLoadData
+				});
+			};
+			
+			function onLoadData(products) {
+				isLoading = false;
+      			$('#loaderCircle').hide();
+      			var elements = [];
+      			for(var i in products) {
+      				var product = products[i];
+      				var element = '<div class="box"><img src="images/image_1.jpg"/>test<br/>在灰色牆面底，用不規則區塊堆疊出版面。不整齊，卻不會有凌亂的感覺，反而具備設計的層次感。</div>';
+      				elements.push($(element));
+      			}
+      			$('#container').masonry('appended', elements, true);
+			}
+
+			$(function(){
+			    
+			    var $container = $('#container');
+			    
+			    $container.imagesLoaded(function(){
+			      $container.masonry({
+			        itemSelector: '.box',
+			        columnWidth: 100
+			      });
+			    });
+			    
+			    $container.infinitescroll({
+			      navSelector  : '#page-nav',    // selector for the paged navigation 
+			      nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
+			      itemSelector : '.box',     // selector for all items you'll retrieve
+			      loading: {
+			          finishedMsg: 'No more pages to load.',
+			          img: 'http://i.imgur.com/6RMhx.gif'
+			        }
+			      },
+			      // trigger Masonry as a callback
+			      function( newElements ) {
+			        // hide new items while they are loading
+			        var $newElems = $( newElements ).css({ opacity: 0 });
+			        // ensure that images load before adding to masonry layout
+			        $newElems.imagesLoaded(function(){
+			          // show elems now they're ready
+			          $newElems.animate({ opacity: 1 });
+			          $container.masonry( 'appended', $newElems, true ); 
+			        });
+			      }
+			    );
+			    
+			  });
+		</script>
+		
+	</body>                                
+</html>                                  
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
