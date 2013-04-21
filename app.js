@@ -1,4 +1,4 @@
-
+    // "mongoose-pagination": "*"
 /**
  * Module dependencies.
  */
@@ -33,6 +33,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+// app.get('/products.html', product.list_html);
 app.get('/products', product.list);
 app.get('/products/test', product.test);
 app.get('/products/:id', product.get);

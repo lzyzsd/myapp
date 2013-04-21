@@ -1,5 +1,15 @@
+require('mongoose-pagination');
+var Product = require('../models/product');
+
 exports.get = function(req, res) {
 	var id = req.params['id'];
+	Product.find({id: 1}, function(error, pro) {
+		if(error) {
+
+		}else {
+
+		}
+	})
 	res.json({
 		id: id,
 		url: "images/image_1.jpg",
@@ -15,21 +25,24 @@ exports.get = function(req, res) {
  */
 
 exports.list = function(req, res) {
-	var images = [];
-	var sizeMap = {
-		1: {width: 200, height: 283}
-	}
-	for(var i=1; i<= 10; i++) {
-		images.push({
-			id: i, 
-			url: "images/image_" + i + ".jpg",
-			name: "image_" + i + ".jpg",
-			address: {
-				street: i + '5.Ave'
+	var page = req.query['page']*1 || 1;
+	var category = req.query['category'] || 'all';
+	console.log(req.query);
+	console.log("page=" + page + " category=" + category);
+
+	Product
+		.find({category: (category==='all' ? null : category)})
+		.paginate(page, 3, function(err, docs, total) {
+			if(err) {
+				res.json({
+					status: 'error'
+				});
+			}else {
+				var data = {products: docs, total: total, currentPage: page, totalPage: Math.ceil(total/3), category: category};
+				console.log(data);
+				res.render("index", data);
 			}
 		});
-	}
-	res.json(images)
 };
 
 exports.edit = function(req, res) {
@@ -43,8 +56,25 @@ exports.edit = function(req, res) {
 exports.save = function(req, res) {
 	console.log(req.body);
 	console.log(" saved");
-	res.json({
-		status: 'success'
+	var product = new Product({
+		id: 1,
+		name: 'product1',
+		url: 'images/image_1.jpg',
+		title: 'title1',
+		description: 'description1'
+	});
+
+	product.save(function(error, pro) {
+		if(error) {
+			res.json({
+				status: 'error'
+			});
+		}else {
+			res.json({
+				status: 'success',
+				product: pro
+			});
+		}
 	});
 }
 
