@@ -1,0 +1,45 @@
+<html>
+<style type="text/css">
+	font {
+		/*font-size: 30px;*/
+	}
+</style>
+<script type="text/javascript">
+function onload() {
+	setHtml();
+	changeSpan();
+}
+function changeSpan() {
+	var spans = document.getElementsByTagName("span");
+        var i = 0;
+        for(;i<spans.length; i++){
+          spans[i].style.fontSize = "16px";
+        }
+}
+function replaceFonts() {
+	while(true) {
+		var fontElements = document.getElementsByTagName('font');
+		if(fontElements.length === 0) {
+			break;
+		}
+	  for(var i in fontElements) {
+	    var fontEle = fontElements[i];
+	    var textNode = document.createTextNode(fontEle.textContent)
+	    if(fontEle.parentNode) {
+	    	fontEle.parentNode.replaceChild(textNode, fontEle);
+	    }
+	  }
+	}
+};
+function setHtml() {
+	var container = document.createElement('div');
+  container.innerHTML = '<p class="MsoNormal" style="line-height: 27px; text-indent: 21pt; margin: 0cm 0cm 0pt; padding-bottom: 20px; text-align: justify; "><span style="font-size: 16px; "><span style="font-family: 微软���黑, sans-serif; font-size: 16px; ">继上周���价大跌之���，各国央行就是否购买���金产生分���。辉利期货<span lang="EN-US" style="font-size: 16px; ">(Phillip Futures)</span>分析师���前说：“一些央行可能���为短期波���微不足道，所以现在可���就开始低���购入黄金。但另一方面���最近黄金���跌搞得市场一片混乱，���于黄金实���内在价值的疑问可能会���出水面，���又将使一些央行不敢买���。现在可���的情况是，黄金储备较���的央行将���时不会增持黄金。”</span></span><span style="font-family: 微软雅黑, sans-serif; font-size: 16px; "><span lang="EN-US" style="font-size: 16px; "><o:p></o:p></span></span></p>';;
+	document.body.innerHTML = container.innerHTML;
+}
+</script>
+<body onload="onload();">
+<p>&nbsp;</p>
+<p class="MsoNormal" style="line-height: 26pt; text-indent: 21pt; margin: 0cm 0cm 0pt; mso-line-height-rule: exactly"><span style="font-size: medium"><span style="font-family: '微软雅���','sans-serif'; mso-bidi-font-size: 10.5pt; mso-bidi-font-family: 'Times New Roman'">继上周金价大跌之���，各国央���就是否购买黄金产生分���。辉利期���<span lang="EN-US">(Phillip Futures)</span>分���师日前说���&ldquo;一些���行可能认为短期波动微���足道，所���现在可能就开始低价购���黄金。但���一方面，最近黄金暴跌���得市场一���混乱，关于黄金实际内���价值的疑���可能会浮出水面，这又���使一些央���不敢买了。现在可能的���况是，黄���储备较多的央行将暂时���会增持黄���。&rdquo;</span></span><span style="font-family: '微软雅黑','sans-serif'; mso-bidi-font-size: 10.5pt; mso-bidi-font-family: 'Times New Roman'"><span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="line-height: 26pt; text-indent: 21pt; margin: 0cm 0cm 0pt; mso-line-height-rule: exactly"><span style="font-size: medium"><span style="font-family: '微软���黑','sans-serif'; mso-bidi-font-size: 10.5pt; mso-bidi-font-family: 'Times New Roman'">上周���金暴跌至���两年的低点，这周黄金���物的需求���加，加上上个月关于央���购买黄金���报告的助力，煽动了黄���市场牛市���绪，金价随之上涨。</span></span><span style="font-family: '微软雅���','sans-serif'; mso-bidi-font-size: 10.5pt; mso-bidi-font-family: 'Times New Roman'"><span lang="EN-US"><o:p></o:p></span></span></p>
+</body>
+</html>
