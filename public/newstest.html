@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="overflow: auto; width: 100%; height: 100%;">
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0px 10px;
+        word-break:break-all;
+        word-wrap:break-word;
+        color: #333;
+        text-align:justify;
+      }
+      div {
+        padding: 0;
+        margin: 0;
+      }
+      input {
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript">
+      var getDevicePixelRatio = function() {
+        return window.devicePixelRatio || 1;
+      };
+      var devicePixelRadio = getDevicePixelRatio();
+      var initDetailFontSize=function(){
+        document.body.style.fontSize = 16 * devicePixelRadio + "px";
+      }
+
+      // Ti.App.addEventListener("renderHtml", function(e) {
+      //   document.body.innerHTML=" "
+      //   document.body.innerHTML = e.html
+      //   document.documentElement.scrollTop = document.body.scrollTop = 0
+      //   var paragraph=document.getElementsByTagName("p");
+      //   for(var i in paragraph){
+      //     paragraph[i].style.paddingBottom = 20 * devicePixelRadio +"px";
+      //     paragraph[i].style.lineHeight = 27 * devicePixelRadio +"px";
+      //     paragraph[i].style.textAlign = "justify";
+      //   }
+      //   var anchorLink=document.getElementsByTagName("a");
+      //   for(var i in anchorLink){
+      //     anchorLink.href="javascript:void(0)"
+      //   }
+      // });
+      // Ti.App.addEventListener("smallFont", function(e) {
+      //   document.body.style.fontSize = parseInt(e.fontSize) * devicePixelRadio + "px";
+      // });
+      // Ti.App.addEventListener("bigFont", function(e) {
+      //   document.body.style.fontSize = parseInt(e.fontSize) * devicePixelRadio + "px";
+      // });
+
+    </script>
+  </head>
+  <body onload="initDetailFontSize()">
+    <div class='title'>
+      test title
+    </div>
+    <p class="MsoNormal" style="line-height: 26pt; text-indent: 21pt; margin: 0cm 0cm 0pt; mso-line-height-rule: exactly"><span style="font-size: medium"><span style="font-family: '微软雅黑','sans-serif'; mso-bidi-font-size: 10.5pt; mso-bidi-font-family: 'Times New Roman'">继上���金价大跌之后，各国央���就是否购���黄金产生分歧。辉利期���<span lang="EN-US">(Phillip Futures)</span>分析师日前说���&ldquo;一些���行可能认���短期波动微不足道，所���现在可能���开始低价购入黄金。但���一方面，���近黄金暴跌搞得市场一���混乱，关���黄金实际内在价值的疑���可能会浮���水面，这又将使一些央���不敢买了���现在可能的情况是，黄���储备较多���央行将暂时不会增持黄���。&rdquo;</span></span><span style="font-family: '微软雅���','sans-serif'; mso-bidi-font-size: 10.5pt; mso-bidi-font-family: 'Times New Roman'"><span lang="EN-US"><o:p></o:p></span></span></p>
+  </body>
+</html>
