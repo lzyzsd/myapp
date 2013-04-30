@@ -7,6 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , product = require('./routes/product')
+  , sign = require('./routes/sign')
+  , admin = require('./routes/admin')
   , http = require('http')
   , path = require('path');
 
@@ -31,7 +33,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', product.list);
 app.get('/users', user.list);
 // app.get('/products.html', product.list_html);
 app.get('/products', product.list);
@@ -39,6 +41,12 @@ app.get('/products/test', product.test);
 app.get('/products/:id', product.get);
 app.post('/products', product.save);
 app.put('/products/:id', product.edit);
+
+app.get('/products.json', product.json_list);
+
+app.get('/signin', sign.showLogin);
+app.post('/signin', sign.signin);
+app.get('/admin', admin.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
