@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone, dictModel){
   var ProductCollection = Backbone.Collection.extend({
     model: dictModel,
-    url: "products",
+    url: "products.json",
     initialize: function(){
 
     },
