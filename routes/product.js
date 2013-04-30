@@ -48,13 +48,11 @@ exports.list = function(req, res) {
 exports.json_list = function(req, res) {
 	Product.find(
 		{}
-		,function(err, data) {
+		,function(err, products) {
 			if(err) {
 
 			}else {
-				res.json({
-					products: data
-				});
+				res.json(products);
 			}
 		}
 	);
