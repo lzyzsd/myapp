@@ -32,7 +32,7 @@ exports.list = function(req, res) {
 
 	Product
 		.find({category: (category==='all' ? null : category)})
-		.paginate(page, 3, function(err, docs, total) {
+		.paginate(page, 10, function(err, docs, total) {
 			if(err) {
 				res.json({
 					status: 'error'
@@ -44,6 +44,21 @@ exports.list = function(req, res) {
 			}
 		});
 };
+
+exports.json_list = function(req, res) {
+	Product.find(
+		{}
+		,function(err, data) {
+			if(err) {
+
+			}else {
+				res.json({
+					products: data
+				});
+			}
+		}
+	);
+}
 
 exports.edit = function(req, res) {
 	var id = req.params['id'];
