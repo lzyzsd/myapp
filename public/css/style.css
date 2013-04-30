@@ -106,7 +106,7 @@ header h1 {
   text-align: center;
   font-size: 24px;
   font-weight: normal;
-  margin: 30px 0 3px 0;
+  margin: 20px 0 3px 0;
 }
 
 header p {
@@ -114,4 +114,71 @@ header p {
   font-size: 13px;
   color: #777;
   margin: 0;
+}
+
+.box {
+  width: 220px;
+  margin: 10px;
+  float: left;
+}
+
+#container .box {
+  width: 236px;
+  padding: 18px 0 10px 0;
+  background-color: #fff;
+  -moz-transition: box-shadow 0.15s ease-out;
+  -o-transition: box-shadow 0.15s ease-out;
+  -webkit-transition: box-shadow 0.15s ease-out;
+  -ms-transition: box-shadow 0.15s ease-out;
+  transition: box-shadow 0.15s ease-out;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  display: none;
+  border: 1px solid #dedede;
+}
+
+#container .options {
+  opacity: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  -moz-transition: opacity 0.15s ease-out;
+  -o-transition: opacity 0.15s ease-out;
+  -webkit-transition: opacity 0.15s ease-out;
+  -ms-transition: opacity 0.15s ease-out;
+  transition: opacity 0.15s ease-out;
+  background-color: white;
+  height: 50px;
+  width: 236px;
+  z-index: 10;
+}
+
+.options .comment, .options .like, .options .magnify {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  width: 50px;
+  height: 50px;
+  -moz-transition: opacity 0.15s ease-out;
+  -o-transition: opacity 0.25s ease-out;
+  -webkit-transition: opacity 0.25s ease-out;
+  -ms-transition: opacity 0.25s ease-out;
+  transition: opacity 0.25s ease-out;
+}
+
+.options .like, .options .magnify {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  width: 50px;
+  height: 50px;
+  -moz-transition: opacity 0.15s ease-out;
+  -o-transition: opacity 0.25s ease-out;
+  -webkit-transition: opacity 0.25s ease-out;
+  -ms-transition: opacity 0.25s ease-out;
+  transition: opacity 0.25s ease-out;
 }
