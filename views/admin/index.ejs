@@ -23,26 +23,11 @@
     <script data-main="js/main" src="js/libs/require/require.js"></script>
   </head>
 
-    <!-- welcome to clickstart message -->
-    <div class="well">      
-      <div class="alert alert-success">
-      <h4>Congratulations! Your App, DB, Repo and Jenkins build have successfully been deployed from a CloudBees clickstart.</h4>      
-      </div>
-        <h3>To develop your application:</h3>
-        <ul>
-        <li>Make sure you have an ssh public key setup on <a href="https://grandcentral.cloudbees.com/user/ssh_keys">Cloudbees</a>
-        <li>Clone the git repo: <code>git clone ssh://git@git.cloudbees.com/<script>document.write(location.hostname.split(".")[1])</script>/<script>document.write(location.hostname.split(".")[0])</script>.git</code>
-        <li>Make your changes (hint, this message is in src/main/webapp/index.html)
-        <li>Push your changes: <code>git push origin master</code> to the cloudbees repo just created for you.        
-        <li>CloudBees will take care of the building/testing/deployment from there.
-      </ul>      
-    </div>
-
   <body>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="#">WordSmith</a>
+          <a class="brand" href="#">My Shop</a>
           <ul class="nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -56,7 +41,7 @@
       <div class="span3">
         <div class="well sidebar-nav">
           <ul class="nav nav-list">
-            <li class="nav-header">Words</li>
+            <li class="nav-header">Products</li>
             <li><a href="#manageProducts">Manage</a></li>
             <li><a href="#newProduct">Add New Product</a></li>
           </ul>
