@@ -17,7 +17,7 @@ define([
       var self = this;
       var msg = this.model.isNew() ? 'Successfully created!' : "Saved!";
       
-      this.model.save({ word: this.$('[name=word]').val(), definition: this.$('[name=definition]').val(), type: this.$('[name=type]').val() }, {
+      this.model.save({ title: this.$('#productTitle').val(), imageName: this.$('#imageName').val(), description: this.$('#productDescription').val() }, {
           success: function(model, resp) {
             Router.showManage();
           },
