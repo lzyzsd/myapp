@@ -43,10 +43,19 @@ app.post('/products', product.save);
 app.put('/products/:id', product.edit);
 
 app.get('/products.json', product.json_list);
+app.post('/products.json', product.json_save);
 
 app.get('/signin', sign.showLogin);
 app.post('/signin', sign.signin);
 app.get('/admin', admin.index);
+
+app.get('/fileupload', function(req, res) {
+  res.render('fileupload');
+});
+app.post('/fileupload', function(req, res) {
+  console.log(req.body);
+  console.log(req.files);
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
