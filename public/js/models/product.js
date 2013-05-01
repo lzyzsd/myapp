@@ -8,7 +8,7 @@ define([
     initialize: function(){
     },
     url : function() {
-      var base = 'products';
+      var base = 'products.json';
       if (this.isNew()) return base;
       return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;
     }
