@@ -67,8 +67,6 @@ exports.edit = function(req, res) {
 }
 
 exports.save = function(req, res) {
-	console.log(req.body);
-	console.log(" saved");
 	var product = new Product({
 		id: 1,
 		name: 'product1',
@@ -89,6 +87,15 @@ exports.save = function(req, res) {
 			});
 		}
 	});
+}
+
+exports.json_save = function(req, res) {
+	console.log('json_save');
+	console.log(req.body.title);
+	console.log(req.imageName);
+	console.log(req.description);
+
+	res.json({success: true});
 }
 
 exports.test = function(req, res) {
