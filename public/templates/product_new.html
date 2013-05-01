@@ -6,19 +6,31 @@
   </div>
   <div class="row">
     <div class="span9">
-      <form class="well">
+      <form class="well" action="products.json" enctype="multipart/form-data" method="post">
         <fieldset>
           <legend>Enter product information</legend>
           <div class="control-group">
             <label class="control-label" for="xlInput">Title</label>
             <div class="controls">
-              <input class="input-xlarge" id="title" name="title" size="30" type="text" />
+              <input class="input-xlarge" id="productTitle" name="title" size="30" type="text" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="xlInput">Image Name</label>
+            <div class="controls">
+              <input class="input-xlarge" id="imageName" name="imageName" size="30" type="text" />
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="xlInput">Description</label>
             <div class="controls">
-              <textarea class="input-xlarge" id="description" name="description"></textarea>
+              <textarea class="input-xlarge" id="productDescription" name="description"></textarea>
+            </div>
+          </div>
+          <div>
+            <label>Image</label>
+            <div class="controls">
+              <input type="file" name="image">
             </div>
           </div>
           <!-- <div class="control-group">
