@@ -29,12 +29,12 @@ define([
       var self = this;
       var msg = this.model.isNew() ? 'Successfully created!' : 'Saved!';
 
-      this.model.save({ title: this.$('#productTitle').val(), imageName: this.$('#imageName').val(), description: this.$('#productDescription').val() }, {
+      this.model.save({ title: this.$('#productTitle').val(), category: this.$('#category').val(), imageName: this.$('#imageName').val(), description: this.$('#productDescription').val() }, {
           success: function(model, resp) {
             Router.showManage();
           },
           error: function() {
-              alert("An error occurred");
+              alert("出错啦。。。");
           }
       });
 

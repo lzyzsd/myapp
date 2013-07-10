@@ -93,13 +93,26 @@ exports.save = function(req, res) {
 }
 
 exports.json_save = function(req, res) {
-	console.log('json_save');
-	console.log(req.body.title);
-	console.log(req.imageName);
-	console.log(req.description);
-
+  var product = new Product({
+    category: req.body.category,
+    url: 'images/' + req.body.imageName,
+    title: req.body.title,
+    description: req.body.description
+  });
+  console.log(product);
 	// res.json({success: true});
-  exports.save(req, res);
+  product.save(function(error, pro) {
+    if(error) {
+      res.json({
+          status: 'error'
+      });
+    }else {
+      res.json({
+        status: 'success',
+        product: pro
+      });
+    }
+  });
 }
 
 exports.upload = function(req, res) {

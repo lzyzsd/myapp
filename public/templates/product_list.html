@@ -14,7 +14,7 @@
 	<tbody>
 	  <% _.each(products, function(product){ %>
 	  	<tr>
-				<td><a href="#product/10"><%= product.get('url') %></a> </td>
+				<td><img class="productImage" src="<%= product.get('url') %>"> </td>
 				<td><%= product.get('title') %></ld>
 				<td><%= product.get('description') %></ld>
   	  </tr>

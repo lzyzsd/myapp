@@ -17,7 +17,6 @@ define([
       'listCategory': 'listCategory',
       // Default
       '*actions': 'listProducts'
-
     },
 
     newProduct: function(){
