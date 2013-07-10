@@ -14,7 +14,7 @@ define([
       }
     });
   }
-  
+
   return {
     initialize: initialize
   };

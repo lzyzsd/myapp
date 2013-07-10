@@ -1,5 +1,8 @@
 require('mongoose-pagination');
-var Product = require('../models/product');
+var Product = require('../models/index').Product
+, fs = require('fs')
+, formidable = require("formidable")
+, util = require('util');
 
 exports.get = function(req, res) {
 	var id = req.params['id'];
@@ -32,13 +35,13 @@ exports.list = function(req, res) {
 
 	Product
 		.find({category: (category==='all' ? null : category)})
-		.paginate(page, 10, function(err, docs, total) {
+		.paginate(page, 12, function(err, docs, total) {
 			if(err) {
 				res.json({
 					status: 'error'
 				});
 			}else {
-				var data = {products: docs, total: total, currentPage: page, totalPage: Math.ceil(total/3), category: category};
+				var data = {products: docs, total: total, currentPage: page, totalPage: Math.ceil(total/12), category: category};
 				console.log(data);
 				res.render("index", data);
 			}
@@ -95,7 +98,33 @@ exports.json_save = function(req, res) {
 	console.log(req.imageName);
 	console.log(req.description);
 
-	res.json({success: true});
+	// res.json({success: true});
+  exports.save(req, res);
+}
+
+exports.upload = function(req, res) {
+  // var form = new formidable.IncomingForm();
+  // console.log(form);
+  // // console.log(req);
+  // form.parse(req, function(err, fields, files) {
+  //   res.writeHead(200, {'content-type': 'text/plain'});
+  //   console.log('received upload:\n\n');
+  //   console.log(util.inspect({fields: fields, files: files}));
+  //   res.end('<textarea data-type=\"application/json\">{\"ok\": true, \"message\": \"Thanks so much\"}</textarea>');
+  // });
+	// console.log(util.inspect(req));
+  var tmpPath = req.files.upload.path;
+  var fileName = req.files.upload.name;
+  targetPath = 'public/upload/' + fileName;
+  fs.rename(tmpPath, targetPath, function(err) {
+    if (err) throw err;
+    fs.unlink(tmpPath, function() {
+        if (err) throw err;
+    });
+    res.json({status: 'success', name: fileName});
+    // res.end(JSON.stringify({status: 'success', url: '/public/upload/'+fileName}));
+    // res.end('<textarea data-type=\"application/json\">{status: \"success\"}</textarea>')
+  });
 }
 
 exports.test = function(req, res) {

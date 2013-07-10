@@ -4,17 +4,20 @@ define([
   'underscore',
   'backbone',
   'models/product',
-  'collections/products'
-], function($, _, Backbone, Product, ProductList){
+  'collections/products',
+  'models/category'
+], function($, _, Backbone, Product, ProductList, Category){
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
       'newProduct': "newProduct",
       'manageProducts' : 'listProducts',
       'product/:id': "productDetail",
+      'newCategory': "newCategory",
+      'listCategory': 'listCategory',
       // Default
       '*actions': 'listProducts'
-      
+
     },
 
     newProduct: function(){
@@ -22,7 +25,7 @@ define([
         new NewProductView({model:new Product()}).render();
       });
     },
-    
+
     showManage: function() {
       $("#page").unbind();
       this.navigate("manageProducts", true);
@@ -34,7 +37,19 @@ define([
         new ListView().render();
       });
     },
-    
+
+    newCategory: function() {
+      require(['views/category_new'], function(NewCategoryView) {
+        new NewCategoryView({model: new Category()}).render();
+      });
+    },
+
+    listCategory: function() {
+      require(['views/category_list'], function(ListCategoryView) {
+        new ListCategoryView().render();
+      });
+    },
+
     start: function() {
       Backbone.history.start();
       return this;
@@ -49,6 +64,6 @@ define([
       });
     }
   });
-  
+
   return new AppRouter();
 });

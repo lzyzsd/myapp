@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
-
 var productSchema = mongoose.Schema({
     name: String,
     url: String,
@@ -9,5 +7,3 @@ var productSchema = mongoose.Schema({
 });
 
 var Product = mongoose.model('Product', productSchema);
-
-module.exports = Product;

@@ -59,23 +59,23 @@
       <div id="container" class="center">
       	<% for(var i in products) { %>
       		<div class="box">
-            <div class="options"> 
+            <div class="options">
               <div class="comment" title="Add comment">
                 <a href="＃" class="icon-comment"></a>
                 <em></em><span>Note</span>
-              </div> 
+              </div>
               <div class="like" title="Like image">
                 <a href="#" class="icon-heart"></a>
                 <em></em><span>Like</span>
-              </div> 
+              </div>
               <div class="save" title="Save image">
                 <a href＝"#" class="icon-plus"></a>
                 <em></em><span>Save</span>
-              </div> 
+              </div>
               <div class="magnify" title="Magnify">
                 <a href="#" class="icon-search"></a>
                 <em></em><span>Details</span>
-              </div> 
+              </div>
             </div>
             <div class="image-box">
               <img src="<%= products[i].url%>">
@@ -93,7 +93,7 @@
   				</li>
   				<% } %>
 
-  				<% for(var i=2; i>0; i--) { 
+  				<% for(var i=2; i>0; i--) {
   						if(currentPage-i <= 0) continue;
   				%>
     			<li>
@@ -239,7 +239,7 @@
       });
 		// });
 
-		  // $('#filters li').click(onClickFilter);
+		  $('#filters li').click(onClickFilter);
       $('#container .box').mouseover(function() {
         $(this).find(".options").css('opacity', 100);
       });

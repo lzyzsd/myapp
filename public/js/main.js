@@ -6,11 +6,16 @@
 require.config({
   paths: {
     jquery: 'libs/jquery/jquery-min',
+    jqueryUpload: 'libs/jquery/jquery.iframe-transport',
     underscore: 'libs/underscore/underscore-min',
     backbone: 'libs/backbone/backbone-optamd3-min',
     bootstrap: 'libs/bootstrap/bootstrap-min',
     text: 'libs/require/text',
     templates: '../templates'
+  },
+  shim: {
+    "jqueryUpload": ["jquery"],
+    "bootstrap": ["jquery"]
   },
   urlArgs: "bust=" +  (new Date()).getTime()  //TODO: cache-buster: remove for production!!!
 
