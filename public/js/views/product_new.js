@@ -5,9 +5,10 @@ define([
   'backbone',
   'router',
   'text!templates/product_new.html',
+  '../collections/categories',
   'jqueryUpload',
   'bootstrap'
-], function($, _, Backbone, Router, productTemplate){
+], function($, _, Backbone, Router, productTemplate, categories){
   var View = Backbone.View.extend({
     el: $("#page"),
 
@@ -40,8 +41,26 @@ define([
       return false;
     },
 
+    getCategories: function() {
+      ele = this.el
+      categories.fetch({
+        success: function(model, response, options) {
+          if(response.status !== 'error') {
+            var cat = $('#category', ele);
+             console.log(cat, ele);
+            _.each(response, function(c) {
+              if(c.name) {
+                cat[0].add(new Option(c.name, c._id));
+              }
+            });
+          }
+        }
+      });
+    },
+
     render: function(){
       this.el.html(productTemplate);
+      this.getCategories();
     },
 
     upload: function(e) {
