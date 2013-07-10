@@ -1,3 +1,9 @@
+var fs = require('fs'),
+path = require('path');
 exports.index = function(req, res) {
-	res.render('admin/index');
+  var publicDir = path.resolve(__dirname + '/..');
+  console.log(publicDir);
+	fs.readFile(publicDir + '/public/manage.html', 'utf8', function(err, text){
+    res.send(text);
+  });
 };
