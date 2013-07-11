@@ -29,20 +29,21 @@ exports.get = function(req, res) {
 
 exports.list = function(req, res) {
 	var page = req.query['page']*1 || 1;
-	var category = req.query['category'] || 'all';
-	console.log(req.query);
-	console.log("page=" + page + " category=" + category);
-
+	var category = req.query['category'];
+  var options = {};
+  if(category) {
+    options['category'] = category;
+  }
 	Product
-		.find({category: (category==='all' ? null : category)})
+		.find(options)
 		.paginate(page, 12, function(err, docs, total) {
 			if(err) {
 				res.json({
 					status: 'error'
 				});
 			}else {
+        console.log('----', category);
 				var data = {products: docs, total: total, currentPage: page, totalPage: Math.ceil(total/12), category: category};
-				console.log(data);
 				res.render("index", data);
 			}
 		});
@@ -71,12 +72,11 @@ exports.edit = function(req, res) {
 
 exports.save = function(req, res) {
 	var product = new Product({
-		id: 1,
-		name: 'product1',
-		url: 'images/image_1.jpg',
-		title: 'title1',
-		description: 'description1'
-	});
+    category: req.body.category,
+    url: 'upload/' + req.body.imageName,
+    title: req.body.title,
+    description: req.body.description
+  });
 
 	product.save(function(error, pro) {
 		if(error) {
@@ -95,12 +95,10 @@ exports.save = function(req, res) {
 exports.json_save = function(req, res) {
   var product = new Product({
     category: req.body.category,
-    url: 'images/' + req.body.imageName,
+    url: 'upload/' + req.body.imageName,
     title: req.body.title,
     description: req.body.description
   });
-  console.log(product);
-	// res.json({success: true});
   product.save(function(error, pro) {
     if(error) {
       res.json({
