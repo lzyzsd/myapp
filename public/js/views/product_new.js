@@ -29,7 +29,7 @@ define([
       var self = this;
       var msg = this.model.isNew() ? 'Successfully created!' : 'Saved!';
 
-      this.model.save({ title: this.$('#productTitle').val(), category: this.$('#category').val(), imageName: this.$('#imageName').val(), description: this.$('#productDescription').val() }, {
+      this.model.save({ title: $('#productTitle').val(), category: $('#category').find(":selected").text(), imageName: $('#imageName').val(), description: $('#productDescription').val() }, {
           success: function(model, resp) {
             Router.showManage();
           },
@@ -83,8 +83,8 @@ define([
           $("#save_product").removeClass("disabled");
           $("#upload_button").button('reset');
           var fileName = data.name;
-          $("#uploaded_image").attr('background-image', '/public/upload/'+fileName);
           $("#imageName").val(fileName);
+          $("#thumbnail").attr('src', 'http://localhost:3000/upload/'+fileName);
         }
       });
     },
