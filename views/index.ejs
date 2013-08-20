@@ -15,11 +15,11 @@
 
   <!-- CSS Reset -->
   <link rel="stylesheet" href="stylesheets/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
   <!-- Styling for your grid blocks -->
   <link rel="stylesheet" href="stylesheets/style.css">
 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
   <!--Start of Zopim Live Chat Script-->
   <script type="text/javascript">
@@ -45,7 +45,10 @@
         grid items to show.
         -->
       <ol id="filters">
-        <li data-filter="amsterdam">Amsterdam</li>
+        <% for(var i in categories) { %>
+          <li data-filter="<%=categories[i].name%>"><%=categories[i].name%></li>
+        <% } %>
+        <!-- <li data-filter="amsterdam">Amsterdam</li>
         <li data-filter="tokyo">Tokyo</li>
         <li data-filter="london">London</li>
         <li data-filter="paris">Paris</li>
@@ -53,7 +56,7 @@
         <li data-filter="sport">Sport</li>
         <li data-filter="fashion">Fashion</li>
         <li data-filter="video">Video</li>
-        <li data-filter="art">Art</li>
+        <li data-filter="art">Art</li> -->
       </ol>
 
       <div id="container" class="center">

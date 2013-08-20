@@ -1,4 +1,6 @@
 require('mongoose-pagination');
+var Category = require('../models/index').Category;
+
 var Product = require('../models/index').Product
 , fs = require('fs')
 , formidable = require("formidable")
@@ -34,19 +36,23 @@ exports.list = function(req, res) {
   if(category) {
     options['category'] = category;
   }
-	Product
-		.find(options)
-		.paginate(page, 12, function(err, docs, total) {
-			if(err) {
-				res.json({
-					status: 'error'
-				});
-			}else {
-        console.log('----', category);
-				var data = {products: docs, total: total, currentPage: page, totalPage: Math.ceil(total/12), category: category};
-				res.render("index", data);
-			}
-		});
+  Category.find({}, function(err, categories) {
+    if(err) {
+    }else {
+      Product
+        .find(options)
+        .paginate(page, 12, function(err, docs, total) {
+          if(err) {
+            res.json({
+              status: 'error'
+            });
+          }else {
+            var data = {products: docs, total: total, currentPage: page, totalPage: Math.ceil(total/12), category: category, categories: categories};
+            res.render("index", data);
+          }
+        });
+    }
+  });
 };
 
 exports.json_list = function(req, res) {

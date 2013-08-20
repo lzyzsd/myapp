@@ -3,8 +3,9 @@ define([
   'underscore',
   'backbone',
   'collections/categories',
+  'views/category_item_view',
   'text!templates/category_list.html'
-], function($, _, Backbone, categoryCollection, categoryListTemplate){
+], function($, _, Backbone, categoryCollection, CategoryItemView, categoryListTemplate){
   var View = Backbone.View.extend({
     el: $("#page"),
 
@@ -40,11 +41,11 @@ define([
 
       this.collection.fetch()
       .done(function(data){
-        // console.log(view.collection.models);
-        $(view.el).html(view.template({
-            categories: view.collection.models,
-            _: _
-         }));
+        $(view.el).html('');
+        _.each(view.collection.models, function(model) {
+          var itemEl = new CategoryItemView({model: model}).render().el;
+          $(view.el).append(itemEl);
+        });
       });
     }
 

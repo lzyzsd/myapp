@@ -1,0 +1,8 @@
+.row {
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+
+.row:hover {
+  background-color: #eee
+}

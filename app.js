@@ -38,10 +38,10 @@ app.get('/', product.list);
 app.get('/users', user.list);
 // app.get('/products.html', product.list_html);
 app.get('/products', product.list);
-app.get('/products/test', product.test);
-app.get('/products/:id', product.get);
-app.post('/products', product.save);
-app.put('/products/:id', product.edit);
+// app.get('/products/test', product.test);
+// app.get('/products/:id', product.get);
+// app.post('/products', product.save);
+// app.put('/products/:id', product.edit);
 
 app.get('/products.json', product.json_list);
 app.post('/products.json', product.json_save);
