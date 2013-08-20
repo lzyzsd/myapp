@@ -6,3 +6,8 @@
 .category-item.row:hover {
   background-color: #eee
 }
+
+.product-item img {
+  width:150px;
+  height:150px;
+}

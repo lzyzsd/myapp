@@ -119,6 +119,16 @@ exports.json_save = function(req, res) {
   });
 }
 
+exports.json_delete = function(req, res) {
+  Product.remove({_id: req.params['id']}, function(error) {
+    if(error) {
+      console.log('delete error ', error);
+    }else {
+      console.log('delete success');
+    }
+  });
+}
+
 exports.upload = function(req, res) {
   // var form = new formidable.IncomingForm();
   // console.log(form);

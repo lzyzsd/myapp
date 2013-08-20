@@ -5,6 +5,7 @@ define([
 
   //put interesting things in the model, even validation
   var Product = Backbone.Model.extend({
+    idAttribute: "_id",
     initialize: function(){
     },
     url : function() {

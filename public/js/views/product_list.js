@@ -3,8 +3,9 @@ define([
   'underscore',
   'backbone',
   'collections/products',
+  'views/product_item_view',
   'text!templates/product_list.html'
-], function($, _, Backbone, productCollection, productListTemplate){
+], function($, _, Backbone, productCollection, ProductItemView, productListTemplate){
   var View = Backbone.View.extend({
     el: $("#page"),
 
@@ -26,26 +27,24 @@ define([
       _.bindAll(this, "fetchAndRender");
       this.collection.bind('change', this.fetchAndRender);
       this.collection.bind('add', this.fetchAndRender);
-      this.collection.bind('remove', this.fetchAndRender);
+      // this.collection.bind('remove', this.fetchAndRender);
     },
-    
-    fetchAndRender: function(){ 
-      alert("fetch and render");
+
+    fetchAndRender: function(){
       productCollection.fetch({success: function(){this.render();}})
     },
-    
-    render: function(){ 
-      
+
+    render: function(){
       var view = this;
-      $(view.el).html("loading...");  
+      $(view.el).html("loading...");
 
       this.collection.fetch()
       .done(function(data){
-        // console.log(view.collection.models);
-        $(view.el).html(view.template({
-            products: view.collection.models,
-            _: _
-         }));    
+        $(view.el).html('');
+        _.each(view.collection.models, function(model) {
+          var itemTpl = new ProductItemView({ model: model });
+          $(view.el).append(itemTpl.render().el);
+        });
       });
 	  }
 
