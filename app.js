@@ -48,6 +48,7 @@ app.post('/products.json', product.json_save);
 
 app.get('/categories.json', category.json_list);
 app.post('/categories.json', category.json_save);
+app.delete('/categories.json/:id', category.json_delete)
 
 app.get('/signin', sign.showLogin);
 app.post('/signin', sign.signin);

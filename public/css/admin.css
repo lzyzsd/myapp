@@ -3,6 +3,6 @@
   margin-left: 0;
 }
 
-.row:hover {
+.category-item.row:hover {
   background-color: #eee
 }

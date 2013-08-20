@@ -5,6 +5,7 @@ define([
 
   //put interesting things in the model, even validation
   var Category = Backbone.Model.extend({
+    idAttribute: "_id",
     initialize: function(){
     },
     url : function() {

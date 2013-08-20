@@ -22,3 +22,14 @@ exports.json_save = function(req, res) {
     }
   });
 }
+
+exports.json_delete = function(req, res) {
+  console.log(req.params['id']);
+  Category.remove({_id: req.params['id']}, function(error) {
+    if(error) {
+      console.log('delete error', error);
+    }else {
+      console.log('delete success');
+    }
+  });
+}
